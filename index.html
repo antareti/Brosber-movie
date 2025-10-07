@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Brosber Movie — Видеоредактор нового поколения</title>
-    <!-- Подключаем Google Font: Inter для современного вида --><link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     <style>
         /* Общие стили и шрифт */
         body, html {
@@ -31,7 +33,7 @@
         /* Параллакс фон */
         body {
             /* Фоновое изображение с огненным акцентом */
-            background: url('https://placehold.co/1920x1080/0A0A0A/FF7F00?text=Fiery+Dark+Background') no-repeat center center fixed;
+            background: url('1.jpg') no-repeat center center fixed; /* Использование 1.jpg в качестве фона */
             background-size: cover;
             position: relative;
         }
@@ -450,7 +452,7 @@
     <h3>Посмотрите, что вы можете создать</h3>
     <div class="video-wrapper">
         <video controls poster="https://placehold.co/900x500/0A0A0A/FF7F00?text=Fiery+Video+Preview">
-            <source src="1.mp4" type="video/mp4" onerror="this.parentNode.innerHTML='<!-- Placeholder video source: 1.mp4. Replace with actual video file. -->';">
+            <source src="1.mp4" type="video/mp4" onerror="this.parentNode.innerHTML='';">
             Ваш браузер не поддерживает видео.
         </video>
         <div class="video-text">Видео создано в Brosber Movie</div>
@@ -483,7 +485,8 @@
     </div>
 </section>
 
-<!-- Раздел с отзывами --><section class="testimonials" id="testimonials">
+
+<section class="testimonials" id="testimonials">
     <h2>Нам доверяют креаторы, которые **зажигают**</h2>
     <div class="review-grid">
         <div class="review-card">
@@ -506,7 +509,8 @@
     &copy; 2025 Brosber Movie. Все права защищены.
 </footer>
 
-<!-- Кнопка "Наверх" --><div id="backToTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
+
+<div id="backToTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
     &#x25B2;
 </div>
 
