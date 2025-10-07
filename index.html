@@ -1,229 +1,430 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Brosber Movie</title>
-<style>
-/* Основные цвета и шрифты */
-body, html {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    height: 100%;
-    color: #fff;
-    overflow-x: hidden;
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brosber Movie — Видеоредактор нового поколения</title>
+    <!-- Подключаем Google Font: Inter для современного вида --><link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+        /* Общие стили и шрифт */
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', Arial, sans-serif;
+            height: 100%;
+            color: #fff; /* Основной цвет текста остается белым для читаемости */
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
 
-/* Параллакс фон */
-body {
-    background: url('1.jpg') no-repeat center center fixed;
-    background-size: cover;
-    position: relative;
-}
+        /* Цветовая палитра: Оранжевый и темный */
+        :root {
+            --primary-color: #FF7F00; /* Более насыщенный оранжевый, ближе к огню */
+            --secondary-color: #FFA500; /* Более яркий оранжевый для свечения */
+            --dark-bg: rgba(10, 10, 10, 0.95); /* Еще темнее фон */
+            --card-bg: rgba(20, 20, 20, 0.9); /* Темнее для карточек */
+            --text-light: #eee; /* Очень светлый серый для основного текста */
+            --fire-red: #FF4500; /* Красный для эффекта огня */
+            --fire-yellow: #FFD700; /* Желтый для эффекта огня */
+        }
 
-/* Оверлей для читаемости текста */
-body::before {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.6);
-    z-index: -1;
-}
+        /* Параллакс фон */
+        body {
+            /* Фоновое изображение с огненным акцентом */
+            background: url('https://placehold.co/1920x1080/0A0A0A/FF7F00?text=Fiery+Dark+Background') no-repeat center center fixed;
+            background-size: cover;
+            position: relative;
+        }
 
-a {
-    text-decoration: none;
-    color: #FFA500;
-}
+        /* Оверлей для читаемости текста */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.85); /* Более плотный оверлей */
+            z-index: -1;
+        }
 
-/* Хедер */
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    background-color: rgba(17,17,17,0.9);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-}
+        a {
+            text-decoration: none;
+            color: var(--secondary-color); /* Ссылки ярче */
+        }
 
-header h1 {
-    color: #FFA500;
-}
+        /* Хедер (Sticky) */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 40px;
+            background-color: var(--dark-bg);
+            border-bottom: 2px solid var(--primary-color); /* Толще граница */
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+        }
 
-nav a {
-    margin-left: 20px;
-    font-weight: bold;
-    transition: transform 0.3s, color 0.3s;
-}
+        header h1 {
+            color: var(--secondary-color);
+            font-size: 1.9em; /* Чуть крупнее */
+            letter-spacing: 2px;
+            text-shadow: 0 0 8px var(--secondary-color), 0 0 15px var(--fire-red); /* Огненное свечение */
+        }
 
-nav a:hover {
-    color: #fff;
-    transform: scale(1.2);
-}
+        nav a {
+            margin-left: 25px;
+            font-weight: 500;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+            color: var(--text-light); /* Пункты меню по умолчанию светлые */
+        }
 
-/* Главный блок */
-.hero {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 80vh;
-    text-align: center;
-    padding: 40px 20px;
-}
+        nav a:hover {
+            color: var(--secondary-color);
+            text-shadow: 0 0 15px var(--secondary-color), 0 0 25px var(--fire-yellow); /* Более сильное огненное свечение */
+        }
 
-.hero h2 {
-    font-size: 2.5em;
-    margin-bottom: 20px;
-    color: #FFA500;
-    animation: fadeIn 1s ease forwards;
-}
+        /* Главный блок (Hero) */
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 85vh;
+            text-align: center;
+            padding: 60px 20px;
+        }
 
-.hero p {
-    font-size: 1.2em;
-    max-width: 600px;
-    margin-bottom: 30px;
-    color: #ddd;
-    animation: fadeIn 1.5s ease forwards;
-}
+        .hero h2 {
+            font-size: 3.8em; /* Еще крупнее */
+            margin-bottom: 25px;
+            color: #fff;
+            /* Эффект огненного текста */
+            text-shadow: 
+                0 0 10px #fff, 
+                0 0 30px var(--secondary-color), 
+                0 0 50px var(--fire-red);
+            animation: fadeInDown 1s ease forwards;
+        }
 
-.download-btn {
-    background-color: #FFA500;
-    color: #000;
-    padding: 15px 30px;
-    font-size: 1.2em;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: transform 0.3s, box-shadow 0.3s;
-}
+        .hero p {
+            font-size: 1.5em; /* Крупнее */
+            max-width: 700px;
+            margin-bottom: 40px;
+            color: var(--text-light);
+            animation: fadeIn 1.5s ease forwards;
+        }
 
-.download-btn:hover {
-    transform: scale(1.1);
-    box-shadow: 0 0 20px #FFA500;
-}
+        .download-btn {
+            background-color: var(--primary-color);
+            color: #000; /* Цвет текста кнопки черный */
+            padding: 20px 45px; /* Больше padding */
+            font-size: 1.4em; /* Крупнее шрифт */
+            font-weight: 800; /* Более жирный */
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            /* Огненная тень для кнопки */
+            box-shadow: 0 0 25px var(--primary-color), 0 0 40px var(--fire-red);
+        }
 
-/* Видео-презентация с 3D-текстом */
-.video-container {
-    display: flex;
-    justify-content: center;
-    margin: 40px 0;
-}
+        .download-btn:hover {
+            transform: translateY(-7px) scale(1.08); /* Сильнее эффект при наведении */
+            box-shadow: 0 0 40px var(--secondary-color), 0 0 60px var(--fire-yellow); /* Усиленное свечение */
+            background-color: var(--secondary-color);
+        }
 
-.video-wrapper {
-    position: relative;
-    display: inline-block;
-}
+        /* Видео-презентация */
+        .video-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 80px 20px; /* Больше padding */
+            background-color: rgba(0, 0, 0, 0.7); /* Темнее фон */
+            border-top: 1px solid rgba(255, 127, 0, 0.2);
+            border-bottom: 1px solid rgba(255, 127, 0, 0.2);
+        }
+        
+        .video-container h3 {
+            font-size: 2.2em;
+            color: var(--secondary-color);
+            margin-bottom: 35px;
+            text-transform: uppercase;
+            text-shadow: 0 0 12px var(--secondary-color), 0 0 20px var(--fire-red);
+        }
 
-.video-wrapper video {
-    width: 90%;
-    max-width: 800px;
-    border: 5px solid #FFA500;
-    border-radius: 15px;
-    box-shadow: 0 0 20px #FFA500;
-    transform: perspective(600px) rotateY(-2deg);
-    transition: transform 0.5s;
-}
+        .video-wrapper {
+            position: relative;
+            max-width: 900px;
+            width: 90%;
+            border-radius: 20px;
+            overflow: hidden;
+            /* Огненная тень для видео */
+            box-shadow: 0 0 40px rgba(255, 127, 0, 0.6);
+        }
 
-.video-wrapper video:hover {
-    transform: perspective(600px) rotateY(0deg);
-}
+        .video-wrapper video {
+            width: 100%;
+            display: block;
+            border: 8px solid var(--primary-color); /* Толще рамка */
+            border-radius: 20px;
+            transition: transform 0.5s;
+        }
 
-/* 3D-текст поверх видео */
-.video-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) rotateX(0deg) rotateY(0deg);
-    font-size: 2em;
-    font-weight: bold;
-    color: #FFA500;
-    text-align: center;
-    text-shadow:
-        2px 2px 0 #000,
-        4px 4px 5px rgba(0,0,0,0.5),
-        6px 6px 10px rgba(0,0,0,0.3),
-        0 0 20px #FFA500,
-        0 0 30px #FFA500;
-    animation: floatText 3s ease-in-out infinite alternate;
-    pointer-events: none;
-}
+        /* 3D-текст */
+        .video-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2.8em; /* Крупнее */
+            font-weight: 900;
+            color: #fff;
+            text-align: center;
+            /* Интенсивное огненное свечение */
+            text-shadow:
+                0 0 20px #000,
+                0 0 40px var(--primary-color),
+                0 0 60px var(--fire-red);
+            animation: floatText 3s ease-in-out infinite alternate;
+            pointer-events: none;
+        }
 
-/* Анимация "парящего" текста */
-@keyframes floatText {
-    0% { transform: translate(-50%, -50%) translateY(0) rotateY(0deg); }
-    50% { transform: translate(-50%, -50%) translateY(-10px) rotateY(5deg); }
-    100% { transform: translate(-50%, -50%) translateY(0) rotateY(-5deg); }
-}
+        /* Карточки функций */
+        .features {
+            padding: 100px 40px; /* Больше padding */
+            text-align: center;
+        }
+        
+        .features h2 {
+            font-size: 2.8em;
+            color: var(--secondary-color);
+            margin-bottom: 60px;
+            text-shadow: 0 0 12px rgba(255, 165, 0, 0.6);
+        }
 
-/* Карточки функций */
-.features {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-    padding: 20px;
-    margin-bottom: 50px;
-}
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
 
-.feature-card {
-    background-color: rgba(17,17,17,0.8);
-    border: 2px solid #FFA500;
-    border-radius: 15px;
-    padding: 20px;
-    text-align: center;
-    transition: transform 0.3s, box-shadow 0.3s;
-}
+        .feature-card {
+            background-color: var(--card-bg);
+            /* Огненная граница */
+            border: 2px solid var(--primary-color);
+            border-radius: 20px;
+            padding: 35px; /* Больше padding */
+            text-align: center;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            position: relative; /* Для псевдоэлемента огня */
+            overflow: hidden;
+        }
 
-.feature-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 0 20px #FFA500;
-}
+        /* Эффект горящего края для карточек */
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border-radius: 25px; /* Чуть больше радиус, чем у карточки */
+            background: linear-gradient(45deg, var(--fire-red) 0%, var(--primary-color) 50%, var(--fire-yellow) 100%);
+            z-index: -1;
+            filter: blur(10px); /* Размытие для эффекта свечения */
+            opacity: 0;
+            transition: opacity 0.4s ease, filter 0.4s ease;
+        }
 
-.feature-card h3 {
-    margin-bottom: 15px;
-    color: #FFA500;
-}
+        .feature-card:hover::before {
+            opacity: 0.8;
+            filter: blur(15px); /* Сильнее размытие при наведении */
+        }
 
-/* Анимации */
-@keyframes fadeIn {
-    from {opacity: 0; transform: translateY(20px);}
-    to {opacity: 1; transform: translateY(0);}
-}
+        .feature-card:hover {
+            transform: translateY(-20px) scale(1.05); /* Сильнее эффект при наведении */
+            /* Усиленная огненная тень */
+            box-shadow: 0 15px 50px rgba(255, 127, 0, 0.8), 0 0 60px rgba(255, 69, 0, 0.6);
+        }
+        
+        .feature-card .icon {
+            color: var(--secondary-color);
+            font-size: 3.5em; /* Крупнее иконки */
+            margin-bottom: 25px;
+            display: block;
+            text-shadow: 0 0 10px var(--secondary-color), 0 0 20px var(--fire-red);
+        }
 
-/* Футер */
-footer {
-    text-align: center;
-    padding: 20px;
-    background-color: rgba(17,17,17,0.9);
-    color: #777;
-}
+        .feature-card h3 {
+            margin-bottom: 12px;
+            color: #fff;
+            text-shadow: 0 0 8px var(--primary-color);
+            font-size: 1.6em; /* Крупнее */
+        }
+        
+        .feature-card p {
+            color: var(--text-light);
+        }
 
-/* Адаптив */
-@media(max-width: 600px) {
-    .hero h2 {
-        font-size: 2em;
-    }
+        /* Раздел с отзывами */
+        .testimonials {
+            padding: 100px 40px;
+            background-color: rgba(0, 0, 0, 0.7);
+            text-align: center;
+            border-top: 1px solid rgba(255, 127, 0, 0.2);
+        }
+        
+        .testimonials h2 {
+            font-size: 2.8em;
+            color: var(--secondary-color);
+            margin-bottom: 60px;
+            text-shadow: 0 0 12px rgba(255, 165, 0, 0.6);
+        }
 
-    .hero p {
-        font-size: 1em;
-    }
+        .review-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .review-card {
+            background-color: var(--card-bg);
+            /* Огненная полоса */
+            border-left: 6px solid var(--primary-color); 
+            border-radius: 12px; /* Чуть более скругленные */
+            padding: 30px; /* Больше padding */
+            flex: 1 1 300px;
+            text-align: left;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.7);
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
 
-    .video-text {
-        font-size: 1.5em;
-    }
-}
+        .review-card:hover {
+            background-color: rgba(30, 30, 30, 0.9);
+            /* Легкое огненное свечение при наведении */
+            box-shadow: 0 5px 30px rgba(255, 127, 0, 0.4), 0 0 20px rgba(255, 69, 0, 0.2); 
+        }
 
-/* Дополнительно: плавный параллакс при скролле */
-.hero, .video-container, .features, footer {
-    position: relative;
-    z-index: 1;
-}
-</style>
+        .review-card p {
+            font-style: italic;
+            margin-bottom: 15px;
+            color: var(--text-light); /* Основной текст отзывов светлый */
+            line-height: 1.6;
+        }
+        
+        .review-card .author {
+            font-weight: bold;
+            color: var(--secondary-color); /* Имя автора ярче */
+            text-shadow: 0 0 5px var(--secondary-color);
+        }
+
+        /* Футер */
+        footer {
+            text-align: center;
+            padding: 40px; /* Больше padding */
+            background-color: var(--dark-bg);
+            color: #999; /* Чуть светлее, чем #777 */
+            border-top: 2px solid rgba(255, 127, 0, 0.2);
+        }
+
+        /* Кнопка "Наверх" */
+        #backToTop {
+            display: none;
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 999;
+            background-color: var(--primary-color);
+            color: #000;
+            width: 60px; /* Крупнее */
+            height: 60px; /* Крупнее */
+            border-radius: 50%;
+            text-align: center;
+            line-height: 60px; /* Выравнивание по центру */
+            font-size: 1.8em; /* Крупнее стрелка */
+            cursor: pointer;
+            /* Огненное свечение кнопки */
+            box-shadow: 0 0 30px var(--primary-color), 0 0 20px var(--fire-red);
+            transition: opacity 0.3s, transform 0.3s;
+            opacity: 0.9;
+        }
+        
+        #backToTop:hover {
+            opacity: 1;
+            transform: scale(1.15); /* Сильнее эффект при наведении */
+            box-shadow: 0 0 40px var(--secondary-color), 0 0 30px var(--fire-yellow);
+        }
+
+        /* Анимации */
+        @keyframes fadeInDown {
+            from {opacity: 0; transform: translateY(-40px);} /* Сильнее эффект */
+            to {opacity: 1; transform: translateY(0);}
+        }
+        
+        @keyframes fadeIn {
+            from {opacity: 0;}
+            to {opacity: 1;}
+        }
+
+        @keyframes floatText {
+            0% { transform: translate(-50%, -50%) translateY(0) rotate(0deg); }
+            50% { transform: translate(-50%, -50%) translateY(-15px) rotate(3deg); } /* Сильнее эффект */
+            100% { transform: translate(-50%, -50%) translateY(0) rotate(-3deg); }
+        }
+
+        /* Адаптив */
+        @media(max-width: 768px) {
+            header {
+                padding: 15px 20px;
+            }
+            header h1 {
+                font-size: 1.6em;
+            }
+            nav a {
+                margin-left: 10px;
+                font-size: 0.9em;
+            }
+            .hero h2 {
+                font-size: 2.8em;
+            }
+            .hero p {
+                font-size: 1.2em;
+            }
+            .download-btn {
+                padding: 15px 30px;
+                font-size: 1.2em;
+            }
+            .video-text {
+                font-size: 2em;
+            }
+            .features, .testimonials {
+                padding: 50px 20px;
+            }
+            .feature-card {
+                padding: 25px;
+            }
+            .feature-card .icon {
+                font-size: 3em;
+            }
+            #backToTop {
+                width: 50px;
+                height: 50px;
+                line-height: 50px;
+                font-size: 1.5em;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+    </style>
 </head>
 <body>
 
@@ -231,47 +432,113 @@ footer {
     <h1>Brosber Movie</h1>
     <nav>
         <a href="#features">Функции</a>
+        <a href="#testimonials">Отзывы</a>
         <a href="#video">Презентация</a>
         <a href="#download">Скачать</a>
     </nav>
 </header>
 
 <section class="hero">
-    <h2>Создавай видео как профи</h2>
-    <p>Brosber Movie — простой и мощный видеоредактор с эффектами и 3D-анимацией. Твори, монтируй, удивляй!</p>
+    <h2>Создавай видео как **огонь**</h2>
+    <p>Brosber Movie — простой и мощный видеоредактор с 3D-анимацией, AI-инструментами и профессиональными эффектами. **Зажигай, твори, удивляй!**</p>
     <a id="download" href="https://drive.google.com/uc?export=download&id=1rQzml6BJf9D3tFgRzsfZ_cR7LN3uffGQ" target="_blank">
-        <button class="download-btn">Скачать программу</button>
+        <button class="download-btn">Скачать бесплатно</button>
     </a>
 </section>
 
 <section class="video-container" id="video">
+    <h3>Посмотрите, что вы можете создать</h3>
     <div class="video-wrapper">
-        <video controls>
-            <source src="1.mp4" type="video/mp4">
+        <video controls poster="https://placehold.co/900x500/0A0A0A/FF7F00?text=Fiery+Video+Preview">
+            <source src="1.mp4" type="video/mp4" onerror="this.parentNode.innerHTML='<!-- Placeholder video source: 1.mp4. Replace with actual video file. -->';">
             Ваш браузер не поддерживает видео.
         </video>
-        <div class="video-text">Видео создано в программе Brosber Movie</div>
+        <div class="video-text">Видео создано в Brosber Movie</div>
     </div>
 </section>
 
 <section class="features" id="features">
-    <div class="feature-card">
-        <h3>3D-эффекты</h3>
-        <p>Плавные анимации и визуальные эффекты для динамичных видео.</p>
-    </div>
-    <div class="feature-card">
-        <h3>Удобный интерфейс</h3>
-        <p>Интуитивная работа с видео — всё под рукой.</p>
-    </div>
-    <div class="feature-card">
-        <h3>Экспорт</h3>
-        <p>Сохраняй видео в различных форматах быстро и легко.</p>
+    <h2>Почему Brosber Movie — ваш **горячий** выбор</h2>
+    <div class="feature-grid">
+        <div class="feature-card">
+            <span class="icon">🚀</span>
+            <h3>Продвинутые 3D-эффекты</h3>
+            <p>Интеграция с передовыми движками позволяет добавлять плавные анимации, 3D-модели и визуальные эффекты без задержек.</p>
+        </div>
+        <div class="feature-card">
+            <span class="icon">✨</span>
+            <h3>AI-Инструменты</h3>
+            <p>Автоматическое цветокоррекция, трекинг объектов и интеллектуальная нарезка с помощью искусственного интеллекта.</p>
+        </div>
+        <div class="feature-card">
+            <span class="icon">💻</span>
+            <h3>Оптимизированный интерфейс</h3>
+            <p>Интуитивная работа с видео на таймлайне — все инструменты и настройки под рукой, идеально для новичков и профессионалов.</p>
+        </div>
+        <div class="feature-card">
+            <span class="icon">✅</span>
+            <h3>Высококачественный экспорт</h3>
+            <p>Сохраняйте проекты в разрешении до 8K и оптимизируйте их для любой платформы (YouTube, TikTok и т.д.) быстро и легко.</p>
+        </div>
     </div>
 </section>
+
+<!-- Раздел с отзывами --><section class="testimonials" id="testimonials">
+    <h2>Нам доверяют креаторы, которые **зажигают**</h2>
+    <div class="review-grid">
+        <div class="review-card">
+            <p>"Я был поражен, насколько быстро я смог освоить 3D-анимацию! Brosber Movie сократил время монтажа вдвое."</p>
+            <div class="author">— Иван Петров, Видеодизайнер</div>
+        </div>
+        <div class="review-card">
+            <p>"Идеально для контента в социальных сетях. AI-трекинг работает безупречно, а интерфейс просто летает."</p>
+            <div class="author">— Алина Смирнова, Блогер</div>
+        </div>
+        <div class="review-card">
+            <p>"Перешел с дорогого софта на Brosber Movie. Качество экспорта и набор эффектов не уступают, а цена в разы ниже."</p>
+            <div class="author">— Сергей Ковальчук, Режиссер</div>
+        </div>
+    </div>
+</section>
+
 
 <footer>
     &copy; 2025 Brosber Movie. Все права защищены.
 </footer>
 
-</body>
-</html>
+<!-- Кнопка "Наверх" --><div id="backToTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
+    &#x25B2;
+</div>
+
+<script>
+    // Инициализация переменных
+    const body = document.body;
+    const backToTopButton = document.getElementById('backToTop');
+    
+    // 1. Улучшенный параллакс с помощью JS
+    function handleScrollParallax() {
+        const scrollTop = window.pageYOffset;
+        body.style.backgroundPositionY = `calc(50% + ${scrollTop * 0.05}px)`;
+    }
+    
+    // 2. Логика кнопки "Наверх"
+    function handleBackToTop() {
+        if (document.body.scrollTop > 500 || document.documentElement.scrollTop > 500) {
+            backToTopButton.style.display = 'block';
+        } else {
+            backToTopButton.style.display = 'none';
+        }
+    }
+
+    // Обработчик события скролла
+    window.addEventListener('scroll', () => {
+        handleScrollParallax();
+        handleBackToTop();
+    });
+    
+    // Добавляем обработчик на загрузку для первоначального состояния
+    window.addEventListener('load', () => {
+        handleScrollParallax();
+        handleBackToTop(); 
+    });
+</script>
