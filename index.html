@@ -221,6 +221,7 @@
             animation: floatText 3s ease-in-out infinite alternate;
             pointer-events: none;
             white-space: nowrap; /* Чтобы не переносился на мобильных */
+            display: none; /* СКРЫВАЕМ ПО УМОЛЧАНИЮ, ПОКАЗЫВАЕМ ТОЛЬКО ПРИ ОШИБКЕ ВИДЕО */
         }
 
         /* Карточки функций и отзывов (общие стили для 3D) */
@@ -445,13 +446,14 @@
 <section class="video-container text-center" id="video">
     <h3>Посмотрите, что вы можете создать</h3>
     <div class="video-wrapper">
-        <!-- Заглушка для видео, т.к. файл "1.mp4" недоступен -->
+        <!-- АКТИВНОЕ ВИДЕО: Теперь используется ваш локальный файл '1.mp4' -->
         <video controls poster="https://placehold.co/900x500/0A0A0A/FF7F00?text=Fiery+Video+Preview">
-            <!-- <source src="1.mp4" type="video/mp4" onerror="this.parentNode.innerHTML='';"> -->
-            <!-- ИСПРАВЛЕНИЕ ОШИБКИ: .video-text не является дочерним элементом <video>, поэтому querySelector возвращал null. Используем nextElementSibling для доступа к соседнему элементу <div>. -->
-            <source src="https://example.com/placeholder.mp4" type="video/mp4" onerror="this.parentNode.nextElementSibling.style.display='block';">
+            <!-- Используем относительную ссылку на ваш файл -->
+            <source src="1.mp4" type="video/mp4" 
+                    onerror="this.parentNode.nextElementSibling.style.display='block';">
             Ваш браузер не поддерживает видео.
         </video>
+        <!-- Текст теперь скрыт по умолчанию (в CSS) и появляется только при ошибке загрузки видео -->
         <div class="video-text">Видео создано в Brosber Movie</div>
     </div>
 </section>
