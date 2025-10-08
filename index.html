@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Brosber Movie — Видеоредактор нового поколения</title>
     
-    <!-- Добавляем Tailwind CSS для современной стилизации новых элементов -->
+    <!-- Добавляем Tailwind CSS для современной стилизации -->
     <script src="https://cdn.tailwindcss.com"></script>
 
+    <!-- Шрифт Inter -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     <style>
         /* Общие стили и шрифт */
@@ -16,21 +17,23 @@
             padding: 0;
             font-family: 'Inter', Arial, sans-serif;
             height: 100%;
-            color: #fff; /* Основной цвет текста остается белым для читаемости */
+            color: #fff;
             overflow-x: hidden;
             scroll-behavior: smooth;
-            cursor: default; /* Устанавливаем курсор по умолчанию */
+            cursor: default;
         }
 
         /* Цветовая палитра: Оранжевый и темный */
         :root {
-            --primary-color: #FF7F00; /* Более насыщенный оранжевый, ближе к огню */
-            --secondary-color: #FFA500; /* Более яркий оранжевый для свечения */
-            --dark-bg: rgba(10, 10, 10, 0.95); /* Еще темнее фон */
+            --primary-color: #FF7F00; /* Насыщенный оранжевый */
+            --secondary-color: #FFA500; /* Яркий оранжевый для свечения */
+            --dark-bg: rgba(10, 10, 10, 0.95); /* Глубокий темный фон */
             --card-bg: rgba(20, 20, 20, 0.9); /* Темнее для карточек */
-            --text-light: #eee; /* Очень светлый серый для основного текста */
+            --text-light: #eee;
             --fire-red: #FF4500; /* Красный для эффекта огня */
             --fire-yellow: #FFD700; /* Желтый для эффекта огня */
+            --fire-glow-light: rgba(255, 215, 0, 0.5);
+            --fire-glow-dark: rgba(255, 69, 0, 0.7);
         }
         
         /* Конфигурация Tailwind для использования наших переменных */
@@ -52,8 +55,8 @@
 
         /* Параллакс фон */
         body {
-            /* Фоновое изображение с огненным акцентом */
-            background: url('1.jpg') no-repeat center center fixed; /* Использование 1.jpg в качестве фона */
+            /* Используем заполнитель, так как внешний файл "1.jpg" недоступен */
+            background: url('https://placehold.co/1920x1080/0A0A0A/FF7F00?text=Fiery+Background') no-repeat center center fixed;
             background-size: cover;
             position: relative;
         }
@@ -66,13 +69,13 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.85); /* Более плотный оверлей */
+            background-color: rgba(0,0,0,0.85);
             z-index: -1;
         }
 
         a {
             text-decoration: none;
-            color: var(--secondary-color); /* Ссылки ярче */
+            color: var(--secondary-color);
         }
 
         /* Хедер (Sticky) */
@@ -82,18 +85,18 @@
             align-items: center;
             padding: 15px 40px;
             background-color: var(--dark-bg);
-            border-bottom: 2px solid var(--primary-color); /* Толще граница */
+            border-bottom: 3px solid var(--primary-color);
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.9);
         }
 
         header h1 {
             color: var(--secondary-color);
-            font-size: 1.9em; /* Чуть крупнее */
+            font-size: 1.9em;
             letter-spacing: 2px;
-            text-shadow: 0 0 8px var(--secondary-color), 0 0 15px var(--fire-red); /* Огненное свечение */
+            text-shadow: 0 0 8px var(--secondary-color), 0 0 15px var(--fire-red);
         }
         
         /* НОВАЯ ФИШКА: Часы */
@@ -112,12 +115,12 @@
             margin-left: 25px;
             font-weight: 500;
             transition: color 0.3s ease, text-shadow 0.3s ease;
-            color: var(--text-light); /* Пункты меню по умолчанию светлые */
+            color: var(--text-light);
         }
 
         nav a:hover {
             color: var(--secondary-color);
-            text-shadow: 0 0 15px var(--secondary-color), 0 0 25px var(--fire-yellow); /* Более сильное огненное свечение */
+            text-shadow: 0 0 15px var(--secondary-color), 0 0 25px var(--fire-yellow);
         }
 
         /* Главный блок (Hero) */
@@ -132,19 +135,16 @@
         }
 
         .hero h2 {
-            font-size: 3.8em; /* Еще крупнее */
+            font-size: 3.8em;
             margin-bottom: 25px;
             color: #fff;
-            /* Эффект огненного текста */
-            text-shadow: 
-                0 0 10px #fff, 
-                0 0 30px var(--secondary-color), 
-                0 0 50px var(--fire-red);
-            animation: fadeInDown 1s ease forwards, flicker 4s infinite alternate; /* Добавляем мерцание */
+            text-shadow: 0 0 10px #fff, 0 0 30px var(--secondary-color), 0 0 50px var(--fire-red);
+            animation: fadeInDown 1s ease forwards, flicker 4s infinite alternate;
+            line-height: 1.1;
         }
 
         .hero p {
-            font-size: 1.5em; /* Крупнее */
+            font-size: 1.5em;
             max-width: 700px;
             margin-bottom: 40px;
             color: var(--text-light);
@@ -153,31 +153,27 @@
 
         .download-btn {
             background-color: var(--primary-color);
-            color: #000; /* Цвет текста кнопки черный */
-            padding: 20px 45px; /* Больше padding */
-            font-size: 1.4em; /* Крупнее шрифт */
-            font-weight: 800; /* Более жирный */
+            color: #000;
+            padding: 20px 45px;
+            font-size: 1.4em;
+            font-weight: 800;
             border: none;
             border-radius: 50px;
             cursor: pointer;
             transition: all 0.3s ease;
-            /* Огненная тень для кнопки */
             box-shadow: 0 0 25px var(--primary-color), 0 0 40px var(--fire-red);
         }
 
         .download-btn:hover {
-            transform: translateY(-7px) scale(1.08); /* Сильнее эффект при наведении */
-            box-shadow: 0 0 40px var(--secondary-color), 0 0 60px var(--fire-yellow); /* Усиленное свечение */
+            transform: translateY(-7px) scale(1.08);
+            box-shadow: 0 0 40px var(--secondary-color), 0 0 60px var(--fire-yellow);
             background-color: var(--secondary-color);
         }
 
         /* Видео-презентация */
         .video-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 80px 20px; /* Больше padding */
-            background-color: rgba(0, 0, 0, 0.7); /* Темнее фон */
+            padding: 80px 20px;
+            background-color: rgba(0, 0, 0, 0.7);
             border-top: 1px solid rgba(255, 127, 0, 0.2);
             border-bottom: 1px solid rgba(255, 127, 0, 0.2);
         }
@@ -193,17 +189,17 @@
         .video-wrapper {
             position: relative;
             max-width: 900px;
-            width: 90%;
+            width: 100%;
+            margin: 0 auto;
             border-radius: 20px;
             overflow: hidden;
-            /* Огненная тень для видео */
             box-shadow: 0 0 40px rgba(255, 127, 0, 0.6);
         }
 
         .video-wrapper video {
             width: 100%;
             display: block;
-            border: 8px solid var(--primary-color); /* Толще рамка */
+            border: 8px solid var(--primary-color);
             border-radius: 20px;
             transition: transform 0.5s;
         }
@@ -214,22 +210,21 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            font-size: 2.8em; /* Крупнее */
+            font-size: 2.8em;
             font-weight: 900;
             color: #fff;
             text-align: center;
-            /* Интенсивное огненное свечение */
             text-shadow:
                 0 0 20px #000,
                 0 0 40px var(--primary-color),
                 0 0 60px var(--fire-red);
             animation: floatText 3s ease-in-out infinite alternate;
             pointer-events: none;
+            white-space: nowrap; /* Чтобы не переносился на мобильных */
         }
 
         /* Карточки функций и отзывов (общие стили для 3D) */
         .feature-card, .review-card {
-            /* Подготовка к 3D-трансформации */
             transform-style: preserve-3d;
             perspective: 1000px;
             transition: transform 0.4s ease, box-shadow 0.4s ease;
@@ -237,12 +232,11 @@
         
         .feature-card {
             background-color: var(--card-bg);
-            /* Огненная граница */
             border: 2px solid var(--primary-color);
             border-radius: 20px;
-            padding: 35px; /* Больше padding */
+            padding: 35px;
             text-align: center;
-            position: relative; /* Для псевдоэлемента огня */
+            position: relative;
             overflow: hidden;
         }
 
@@ -254,27 +248,26 @@
             left: -5px;
             right: -5px;
             bottom: -5px;
-            border-radius: 25px; /* Чуть больше радиус, чем у карточки */
+            border-radius: 25px;
             background: linear-gradient(45deg, var(--fire-red) 0%, var(--primary-color) 50%, var(--fire-yellow) 100%);
             z-index: -1;
-            filter: blur(10px); /* Размытие для эффекта свечения */
+            filter: blur(10px);
             opacity: 0;
             transition: opacity 0.4s ease, filter 0.4s ease;
         }
 
         .feature-card:hover::before {
             opacity: 0.8;
-            filter: blur(15px); /* Сильнее размытие при наведении */
+            filter: blur(15px);
         }
         
-        /* Убираем translateY, так как будет использоваться tilt-эффект */
         .feature-card:hover { 
             box-shadow: 0 15px 50px rgba(255, 127, 0, 0.8), 0 0 60px rgba(255, 69, 0, 0.6);
         }
         
         .feature-card .icon {
             color: var(--secondary-color);
-            font-size: 3.5em; /* Крупнее иконки */
+            font-size: 3.5em;
             margin-bottom: 25px;
             display: block;
             text-shadow: 0 0 10px var(--secondary-color), 0 0 20px var(--fire-red);
@@ -287,33 +280,58 @@
             text-align: center;
             border-top: 1px solid rgba(255, 127, 0, 0.2);
         }
-        
-        /* ... стили testimonials h2, review-grid ... */
 
         .review-card {
             background-color: var(--card-bg);
-            /* Огненная полоса */
             border-left: 6px solid var(--primary-color); 
-            border-radius: 12px; /* Чуть более скругленные */
-            padding: 30px; /* Больше padding */
+            border-radius: 12px;
+            padding: 30px;
             flex: 1 1 300px;
             text-align: left;
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.7);
-            transition: background-color 0.3s, box-shadow 0.3s, transform 0.4s ease; /* Добавляем transform */
+            transition: background-color 0.3s, box-shadow 0.3s, transform 0.4s ease;
         }
 
-        /* ... стили review-card:hover ... */
+        .review-card .author {
+            font-style: italic;
+            color: var(--secondary-color);
+            margin-top: 10px;
+            font-size: 1.1em;
+        }
 
-        /* Футер и кнопка Наверх - стили без изменений */
-        
+        /* Кнопка "Наверх" */
+        #backToTop {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary-color);
+            color: #000;
+            border-radius: 50%;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5em;
+            cursor: pointer;
+            box-shadow: 0 0 15px var(--primary-color);
+            transition: all 0.3s;
+            z-index: 999;
+        }
+        #backToTop:hover {
+            background-color: var(--secondary-color);
+            box-shadow: 0 0 25px var(--secondary-color);
+            transform: translateY(-5px);
+        }
+
         /* ---- НОВЫЕ СТИЛИ ---- */
         /* Курсор-трейл (Огненный след) */
         #cursor-trail-container {
-            pointer-events: none; /* Игнорировать клики */
+            pointer-events: none;
             position: fixed;
             top: 0;
             left: 0;
-            z-index: 9999; /* Поверх всего */
+            z-index: 9999;
         }
         .trail-dot {
             position: absolute;
@@ -322,16 +340,34 @@
             background-color: var(--fire-red);
             border-radius: 50%;
             opacity: 0;
-            /* Плавный переход для исчезновения */
-            transition: transform 0.1s ease-out, opacity 0.1s ease-out, box-shadow 0.1s ease-out; 
-            /* Огненное свечение */
             box-shadow: 0 0 5px var(--fire-yellow), 0 0 10px var(--fire-red);
+        }
+        /* Используем translate для лучшей производительности анимации */
+
+        /* Общие заголовки секций */
+        .features h2, .testimonials h2 {
+            font-size: 2.5em;
+            font-weight: 900;
+            margin-bottom: 20px;
+            color: var(--text-light);
+            text-shadow: 0 0 10px var(--secondary-color);
+            line-height: 1.2;
+        }
+
+        /* Футер */
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            background-color: rgba(0, 0, 0, 0.9);
+            border-top: 1px solid var(--primary-color);
+            font-size: 0.9em;
+            color: var(--text-light);
         }
         /* ---- КОНЕЦ НОВЫХ СТИЛЕЙ ---- */
 
         /* Анимации */
         @keyframes fadeInDown {
-            from {opacity: 0; transform: translateY(-40px);} /* Сильнее эффект */
+            from {opacity: 0; transform: translateY(-40px);}
             to {opacity: 1; transform: translateY(0);}
         }
         
@@ -342,11 +378,11 @@
 
         @keyframes floatText {
             0% { transform: translate(-50%, -50%) translateY(0) rotate(0deg); }
-            50% { transform: translate(-50%, -50%) translateY(-15px) rotate(3deg); } /* Сильнее эффект */
+            50% { transform: translate(-50%, -50%) translateY(-15px) rotate(3deg); }
             100% { transform: translate(-50%, -50%) translateY(0) rotate(-3deg); }
         }
 
-        /* НОВАЯ ФИШКА: Анимация мерцания заголовка */
+        /* Анимация мерцания заголовка */
         @keyframes flicker {
             0%, 18%, 22%, 25%, 53%, 57%, 100% {
                 text-shadow: 
@@ -354,7 +390,7 @@
                     0 0 30px var(--secondary-color), 
                     0 0 50px var(--fire-red);
             }
-            20%, 24%, 55% {        
+            20%, 24%, 55% {      
                 text-shadow: 
                     0 0 5px #fff, 
                     0 0 15px var(--fire-yellow), 
@@ -365,10 +401,18 @@
 
         /* Адаптив */
         @media(max-width: 1024px) {
-            #fire-clock {
-                display: none; /* Скрываем часы на мобильных, чтобы не мешали навигации */
-            }
-            /* ... остальной адаптив без изменений ... */
+            header { padding: 15px 20px; }
+            header nav { display: none; /* Скрываем навигацию, можно сделать бургер-меню, но для простоты скроем */ }
+            header { justify-content: center; } /* Центрируем логотип */
+
+            .hero h2 { font-size: 2.8em; }
+            .hero p { font-size: 1.2em; }
+            .download-btn { padding: 15px 30px; font-size: 1.2em; }
+
+            .video-text { font-size: 1.8em; }
+
+            .features h2, .testimonials h2 { font-size: 2em; }
+            #fire-clock { display: none; }
         }
     </style>
 </head>
@@ -381,7 +425,7 @@
     <h1>Brosber Movie</h1>
     <!-- НОВАЯ ФИШКА 3: Огненные часы -->
     <div id="fire-clock"></div>
-    <nav>
+    <nav class="hidden lg:flex">
         <a href="#features">Функции</a>
         <a href="#testimonials">Отзывы</a>
         <a href="#video">Презентация</a>
@@ -391,74 +435,81 @@
 </header>
 
 <section class="hero">
-    <h2>Создавай видео как **огонь**</h2>
+    <h2 class="max-w-4xl">Создавай видео как **огонь**</h2>
     <p>Brosber Movie — простой и мощный видеоредактор с 3D-анимацией, AI-инструментами и профессиональными эффектами. **Зажигай, твори, удивляй!**</p>
     <a id="download" href="https://drive.google.com/uc?export=download&id=1rQzml6BJf9D3tFgRzsfZ_cR7LN3uffGQ" target="_blank">
         <button class="download-btn">Скачать бесплатно</button>
     </a>
 </section>
 
-<section class="video-container" id="video">
+<section class="video-container text-center" id="video">
     <h3>Посмотрите, что вы можете создать</h3>
     <div class="video-wrapper">
+        <!-- Заглушка для видео, т.к. файл "1.mp4" недоступен -->
         <video controls poster="https://placehold.co/900x500/0A0A0A/FF7F00?text=Fiery+Video+Preview">
-            <source src="1.mp4" type="video/mp4" onerror="this.parentNode.innerHTML='';">
+            <!-- <source src="1.mp4" type="video/mp4" onerror="this.parentNode.innerHTML='';"> -->
+            <!-- ИСПРАВЛЕНИЕ ОШИБКИ: .video-text не является дочерним элементом <video>, поэтому querySelector возвращал null. Используем nextElementSibling для доступа к соседнему элементу <div>. -->
+            <source src="https://example.com/placeholder.mp4" type="video/mp4" onerror="this.parentNode.nextElementSibling.style.display='block';">
             Ваш браузер не поддерживает видео.
         </video>
         <div class="video-text">Видео создано в Brosber Movie</div>
     </div>
 </section>
 
-<section class="features" id="features">
-    <h2 class="mb-4">Почему Brosber Movie — ваш **горячий** выбор</h2>
-    <!-- АНИМИРОВАННЫЙ СЧЕТЧИК -->
-    <p class="text-xl md:text-3xl font-bold mb-12 text-gray-300">
-        Уже <span id="counter" class="text-primary text-4xl md:text-5xl font-extrabold">0</span>+ креаторов **зажигают** с нами!
-    </p>
-    <div class="feature-grid">
-        <div class="feature-card tilt-card">
-            <span class="icon">🚀</span>
-            <h3>Продвинутые 3D-эффекты</h3>
-            <p>Интеграция с передовыми движками позволяет добавлять плавные анимации, 3D-модели и визуальные эффекты без задержек.</p>
-        </div>
-        <div class="feature-card tilt-card">
-            <span class="icon">✨</span>
-            <h3>AI-Инструменты</h3>
-            <p>Автоматическое цветокоррекция, трекинг объектов и интеллектуальная нарезка с помощью искусственного интеллекта.</p>
-        </div>
-        <div class="feature-card tilt-card">
-            <span class="icon">💻</span>
-            <h3>Оптимизированный интерфейс</h3>
-            <p>Интуитивная работа с видео на таймлайне — все инструменты и настройки под рукой, идеально для новичков и профессионалов.</p>
-        </div>
-        <div class="feature-card tilt-card">
-            <span class="icon">✅</span>
-            <h3>Высококачественный экспорт</h3>
-            <p>Сохраняйте проекты в разрешении до 8K и оптимизируйте их для любой платформы (YouTube, TikTok и т.д.) быстро и легко.</p>
+<section class="features py-20 px-4" id="features">
+    <div class="max-w-7xl mx-auto text-center">
+        <h2 class="mb-4">Почему Brosber Movie — ваш **горячий** выбор</h2>
+        <!-- АНИМИРОВАННЫЙ СЧЕТЧИК -->
+        <p class="text-xl md:text-3xl font-bold mb-12 text-gray-300">
+            Уже <span id="counter" class="text-primary text-4xl md:text-5xl font-extrabold">0</span>+ креаторов **зажигают** с нами!
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="feature-card tilt-card">
+                <span class="icon">🚀</span>
+                <h3>Продвинутые 3D-эффекты</h3>
+                <p>Интеграция с передовыми движками позволяет добавлять плавные анимации, 3D-модели и визуальные эффекты без задержек.</p>
+            </div>
+            <div class="feature-card tilt-card">
+                <span class="icon">✨</span>
+                <h3>AI-Инструменты</h3>
+                <p>Автоматическое цветокоррекция, трекинг объектов и интеллектуальная нарезка с помощью искусственного интеллекта.</p>
+            </div>
+            <div class="feature-card tilt-card">
+                <span class="icon">💻</span>
+                <h3>Оптимизированный интерфейс</h3>
+                <p>Интуитивная работа с видео на таймлайне — все инструменты и настройки под рукой, идеально для новичков и профессионалов.</p>
+            </div>
+            <div class="feature-card tilt-card">
+                <span class="icon">✅</span>
+                <h3>Высококачественный экспорт</h3>
+                <p>Сохраняйте проекты в разрешении до 8K и оптимизируйте их для любой платформы (YouTube, TikTok и т.д.) быстро и легко.</p>
+            </div>
         </div>
     </div>
 </section>
 
 
 <section class="testimonials" id="testimonials">
-    <h2>Нам доверяют креаторы, которые **зажигают**</h2>
-    <div class="review-grid">
-        <div class="review-card tilt-card">
-            <p>"Я был поражен, насколько быстро я смог освоить 3D-анимацию! Brosber Movie сократил время монтажа вдвое."</p>
-            <div class="author">— Иван Петров, Видеодизайнер</div>
-        </div>
-        <div class="review-card tilt-card">
-            <p>"Идеально для контента в социальных сетях. AI-трекинг работает безупречно, а интерфейс просто летает."</p>
-            <div class="author">— Алина Смирнова, Блогер</div>
-        </div>
-        <div class="review-card tilt-card">
-            <p>"Перешел с дорогого софта на Brosber Movie. Качество экспорта и набор эффектов не уступают, а цена в разы ниже."</p>
-            <div class="author">— Сергей Ковальчук, Режиссер</div>
+    <div class="max-w-7xl mx-auto text-center">
+        <h2 class="mb-10">Нам доверяют креаторы, которые **зажигают**</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="review-card tilt-card">
+                <p>"Я был поражен, насколько быстро я смог освоить 3D-анимацию! Brosber Movie сократил время монтажа вдвое."</p>
+                <div class="author">— Иван Петров, Видеодизайнер</div>
+            </div>
+            <div class="review-card tilt-card">
+                <p>"Идеально для контента в социальных сетях. AI-трекинг работает безупречно, а интерфейс просто летает."</p>
+                <div class="author">— Алина Смирнова, Блогер</div>
+            </div>
+            <div class="review-card tilt-card">
+                <p>"Перешел с дорогого софта на Brosber Movie. Качество экспорта и набор эффектов не уступают, а цена в разы ниже."</p>
+                <div class="author">— Сергей Ковальчук, Режиссер</div>
+            </div>
         </div>
     </div>
 </section>
 
-<!-- Новый раздел: Подписка на рассылку (Newsletter) -->
+<!-- Раздел: Подписка на рассылку (Newsletter) -->
 <section id="newsletter" class="py-16 md:py-24 bg-dark-bg text-center border-t-2 border-primary">
     <div class="max-w-3xl mx-auto px-4">
         <h2 class="text-3xl md:text-4xl font-extrabold text-secondary mb-4 shadow-fire">
@@ -486,7 +537,6 @@
         <div id="message-box" class="mt-6 text-primary font-bold hidden"></div> 
     </div>
 </section>
-<!-- Конец нового раздела -->
 
 <footer>
     &copy; 2025 Brosber Movie. Все права защищены.
@@ -514,7 +564,6 @@
     const body = document.body;
     const backToTopButton = document.getElementById('backToTop');
     const newsletterForm = document.getElementById('newsletter-form');
-    const messageBox = document.getElementById('message-box');
     
     // Новые переменные для фишек
     const customModal = document.getElementById('custom-modal');
@@ -530,13 +579,14 @@
     // 1. Улучшенный параллакс с помощью JS
     function handleScrollParallax() {
         const scrollTop = window.pageYOffset;
-        body.style.backgroundPositionY = `calc(50% + ${scrollTop * 0.05}px)`;
+        // Более заметный эффект параллакса
+        body.style.backgroundPositionY = `calc(50% + ${scrollTop * 0.1}px)`;
     }
     
     // 2. Логика кнопки "Наверх"
     function handleBackToTop() {
         if (document.body.scrollTop > 500 || document.documentElement.scrollTop > 500) {
-            backToTopButton.style.display = 'block';
+            backToTopButton.style.display = 'flex';
         } else {
             backToTopButton.style.display = 'none';
         }
@@ -550,21 +600,19 @@
         
         const contentWrapper = document.getElementById('modal-content-wrapper');
 
-        // Стилизация в зависимости от успеха/ошибки
         if (isSuccess) {
             document.getElementById('modal-icon').classList.remove('text-red-500');
             document.getElementById('modal-icon').classList.add('text-secondary');
             contentWrapper.classList.remove('border-red-500', 'shadow-fire-error');
             contentWrapper.classList.add('border-primary', 'shadow-fire');
         } else {
-            // Стиль ошибки
             document.getElementById('modal-icon').classList.remove('text-secondary');
             document.getElementById('modal-icon').classList.add('text-red-500');
             contentWrapper.classList.remove('border-primary', 'shadow-fire');
-            contentWrapper.classList.add('border-red-500', 'shadow-fire-error');
+            // Добавляем класс, если хотим уникальный стиль тени для ошибки
+            contentWrapper.classList.add('border-red-500', 'shadow-red-500/50'); 
         }
         
-        // Показ модального окна с анимацией
         customModal.style.display = 'flex';
         setTimeout(() => {
             customModal.style.opacity = '1';
@@ -587,13 +635,11 @@
         const emailInput = document.getElementById('email-input');
         const email = emailInput.value.trim();
 
-        messageBox.textContent = 'Обработка подписки...';
-        messageBox.classList.remove('hidden');
-        messageBox.classList.add('text-secondary');
-        messageBox.classList.remove('text-primary');
+        // Простая имитация обработки
+        showNotification('Подождите...', 'Ваш запрос обрабатывается на наших огненных серверах.', '⏳', true);
 
         setTimeout(() => {
-            messageBox.classList.add('hidden'); 
+            closeModal(); // Закрываем модальное окно загрузки
             
             if (email && email.includes('@') && email.includes('.')) {
                 showNotification(
@@ -611,7 +657,6 @@
                     false
                 );
             }
-            messageBox.classList.remove('text-secondary');
         }, 1500);
     }
 
@@ -626,6 +671,7 @@
             const progress = Math.min(1, elapsed / DURATION);
             const currentNumber = Math.floor(progress * TARGET_NUMBER);
             
+            // Используем форматирование для красивого числа
             counterElement.textContent = currentNumber.toLocaleString('ru-RU');
 
             if (progress < 1) {
@@ -648,19 +694,26 @@
         });
     }, { threshold: 0.5 }); 
 
-
-    // 6. Огненный след курсора
+    // 6. Огненный след курсора (Улучшенная версия с requestAnimationFrame)
     const DOT_COUNT = 15;
+    const trailDots = [];
     for (let i = 0; i < DOT_COUNT; i++) {
         const dot = document.createElement('div');
         dot.classList.add('trail-dot');
-        dot.style.zIndex = 9999 - i;
         trailContainer.appendChild(dot);
+        // Используем массив объектов для хранения координат
+        trailDots.push({
+            el: dot,
+            x: window.innerWidth / 2, 
+            y: window.innerHeight / 2, 
+            targetX: window.innerWidth / 2, 
+            targetY: window.innerHeight / 2,
+            size: 10
+        });
     }
-    const dots = document.querySelectorAll('.trail-dot');
 
-    let mouseX = 0;
-    let mouseY = 0;
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
 
     document.addEventListener('mousemove', (e) => {
         mouseX = e.clientX;
@@ -668,20 +721,30 @@
     });
 
     function updateTrail() {
-        dots.forEach((dot, index) => {
-            const delay = index * 0.05; 
-            const opacity = 1 - index / DOT_COUNT;
+        // Устанавливаем цель для первой точки на курсоре
+        let targetX = mouseX;
+        let targetY = mouseY;
 
-            setTimeout(() => {
-                const targetX = index === 0 ? mouseX : parseFloat(dots[index - 1].style.left) + 5;
-                const targetY = index === 0 ? mouseY : parseFloat(dots[index - 1].style.top) + 5;
-                
-                dot.style.left = `${targetX - 5}px`; 
-                dot.style.top = `${targetY - 5}px`;
-                dot.style.opacity = opacity;
-                dot.style.transform = `scale(${opacity * 0.8 + 0.2})`;
-            }, delay * 1000); 
-        });
+        for (let i = 0; i < DOT_COUNT; i++) {
+            const dot = trailDots[i];
+            
+            // Эффект плавного следования (Lerp)
+            dot.x += (targetX - dot.x) * (i === 0 ? 0.3 : 0.25);
+            dot.y += (targetY - dot.y) * (i === 0 ? 0.3 : 0.25);
+
+            // Применяем transform для лучшей производительности
+            dot.el.style.transform = `translate(${dot.x - 5}px, ${dot.y - 5}px)`;
+
+            // Уменьшаем прозрачность и размер по мере удаления от курсора
+            const opacity = (DOT_COUNT - i) / DOT_COUNT;
+            dot.el.style.opacity = opacity * 0.8;
+            dot.el.style.width = `${dot.size * opacity}px`;
+            dot.el.style.height = `${dot.size * opacity}px`;
+
+            // Следующая точка следует за текущей точкой
+            targetX = dot.x;
+            targetY = dot.y;
+        }
 
         requestAnimationFrame(updateTrail);
     }
@@ -695,10 +758,11 @@
         const x = (e.clientX - rect.left) / rect.width; // 0..1
         const y = (e.clientY - rect.top) / rect.height; // 0..1
 
-        const tiltX = (y - 0.5) * 20; // Угол наклона по X (-10 до 10 градусов)
-        const tiltY = (x - 0.5) * -20; // Угол наклона по Y (-10 до 10 градусов), инвертируем для эффекта
+        const tiltX = (y - 0.5) * -15; // Угол наклона по X (инвертируем для правильного эффекта)
+        const tiltY = (x - 0.5) * 15; // Угол наклона по Y
+        const scale = 1.05;
 
-        card.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale(1.05)`;
+        card.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale(${scale})`;
     }
 
     function resetTilt(e) {
@@ -709,13 +773,15 @@
         tiltCards.forEach(card => {
             card.addEventListener('mousemove', handleTilt);
             card.addEventListener('mouseleave', resetTilt);
+            // Добавляем обработчик для сброса при касании на мобильных (touch)
+            card.addEventListener('touchstart', (e) => e.currentTarget.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1.05)');
+            card.addEventListener('touchend', resetTilt);
         });
     }
 
     // 8. НОВАЯ ФУНКЦИЯ: Обновление времени
     function updateTime() {
         const now = new Date();
-        // Используем опции для красивого формата времени
         const timeString = now.toLocaleTimeString('ru-RU', { 
             hour: '2-digit', 
             minute: '2-digit', 
@@ -752,3 +818,5 @@
     // Добавляем обработчик отправки формы
     newsletterForm.addEventListener('submit', handleSubscription);
 </script>
+</body>
+</html>
